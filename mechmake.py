@@ -1,5 +1,6 @@
 from flask import Flask, flash, render_template, url_for, request, redirect
 from flask_mysqldb import MySQL
+from flask_mail import Mail, Message
 from werkzeug.security import generate_password_hash
 import datetime
 from flask_login import LoginManager, login_user, logout_user
@@ -8,12 +9,14 @@ from models.ModelUser import ModelUser
 from models.entities.User import User
 
 mechmake = Flask(__name__)
-db = MySQL(mechmake)
+
 #pythonanywhere
 mechmake.config.from_object(config['development'])
-
-
+mechmake.config.from_object(config['mail'])
+db = MySQL(mechmake)
+mail = Mail(mechmake)
 adminSession = LoginManager(mechmake)
+
 
 @adminSession.user_loader
 def addUser(id):
@@ -63,6 +66,9 @@ def signup():
         regUsuario = db.connection.cursor()
         regUsuario.execute("INSERT INTO usuario (nombre, correo, clave, fechareg) VALUES (%s, %s, %s, %s)", (nombre, correo, claveCifrado, fechareg))
         db.connection.commit()
+        mensaje = Message(subject='Bienvenidos a Mechmake', recipients=[correo])
+        mensaje.html = render_template('mail.html', nombre=nombre)
+        mail.send(mensaje) 
         return render_template('home.html')
     else:
         return render_template('signup.html')
@@ -103,7 +109,7 @@ def uUsuario(id):
     correo=request.form['correo']
     perfil=request.form['perfil']
     actUsuario = db.connection.cursor()
-    actUsuario.execute("UPDATE usuario SET nombre=%s,correo=%s,perfil=%s WHERE id=%s",(nombre.upper(),correo,perfil))|
+    actUsuario.execute("UPDATE usuario SET nombre=%s,correo=%s,perfil=%s WHERE id=%s",(nombre.upper(),correo,perfil))
     db.connection.commit()
     actUsuario.close('')
     flash('usuario actualizado')
@@ -119,6 +125,6 @@ def sElectronicos ():
     return render_template('Electronicos.html', productos = art)
 
 
-'''if __name__ == '__main__':
+if __name__ == '__main__':
     mechmake.config.from_object(config['development'])
-    mechmake.run(port=3300)'''
+    mechmake.run(port=3300)
