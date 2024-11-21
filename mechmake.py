@@ -32,7 +32,7 @@ def admin():
 
 @mechmake.route('/user')
 def user():
-    return render_template('user.html')
+    return redirect(url_for('sProducto'))
 
 @mechmake.route('/signin', methods=['POST', 'GET'])
 def signin():

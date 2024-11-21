@@ -4,328 +4,429 @@
 {% block content %}
 
 <style>
+
+    .products-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 20px;
+          max-width: 1600px;
+          width: 100%;
+        }
+        
+        .product {
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          transition: box-shadow 0.3s ease;
+        }
+    
+        .product:hover {
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    
+        .product-image {
+          width: 100%;
+          display: block;
+        }
+    
+        .product-details {
+          padding: 20px;
+          text-align: center;
+        }
+    
+        .product-title {
+          color: #ff0066;
+          font-size: 1.2em;
+          margin-bottom: 10px;
+        }
+    
+        .product-description {
+          color: #555;
+          margin-bottom: 20px;
+        }
+    
+        .buy-button {
+          background-color: #ff0066;
+          border: none;
+          border-radius: 4px;
+          color: #ffffff;
+          cursor: pointer;
+          font-size: 1em;
+          padding: 10px 20px;
+          transition: background-color 0.3s ease;
+        }
+    
+        .buy-button:hover {
+          background-color: #e68a00;
+        }
+
+        
+    /* Estilos generales */
     body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f8f9fa;
-        color: #333;
+      font-family: 'Roboto Condensed', sans-serif;
+        margin: 0;
+        padding: 0;
     }
-
-
-    .navbar {
-        background-color: #ff3300;
+    
+    header {
+        background-color: #000000;
+        padding: 10px 100px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-    .navbar-brand {
-        color: #fff;
-        font-weight: bold;
+    
+    .logo img {
+        max-height: 50px;
     }
-    .navbar-nav .nav-link {
-        color: #fff;
-    }
-    .navbar-nav .nav-link:hover {
-        color: #ffd700;
-    }
-
-    .carousel-inner img {
-        border-radius: 10px;
-        object-fit: cover;
-    }
-
-  
-    .card {
+    
+    .search-bar {
+        padding: 10px;
+        width: 800px;
+        border-radius: 5px;
         border: none;
-        border-radius: 10px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-right: 10px;
     }
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-    .card-title {
-        color: #007bff;
-        font-weight: bold;
-    }
-    .card-text {
-        color: #555;
+    
+    .user-actions button {
+        padding: 8px 20px;
+        background-color: #ff0066;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
-    /* Botones */
-    .btn-outline-success {
-        color: #007bff;
-        border-color: #007bff;
+    
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        font-size: 20px;
+        padding: 0px 100px;
+        background-color: #ff0066;
+        overflow: hidden;
     }
-    .btn-outline-success:hover {
-        background-color: #007bff;
-        color: #fff;
+    
+    nav ul li {
+        float: left;
     }
-</style>
+    
+    nav ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    nav ul li a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    
+    
+    
+    .slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
+    margin-top: 20px;
+}
 
-<!-- Navbar principal -->
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">MechMake</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/productos">Productos</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
+.mySlides {
+    display: none;
+}
+
+.mySlides img {
+    width: 100%;
+    border-radius: 1vw; /* Esto ya lo tenías */
+}
+
+    
+    .hidden {
+        display: none;
+    }
+    
+    
+.logo img {
+  max-height: 40px;
+}
+
+.contenedor{
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px;
+  padding: 30px;
+  margin: 0px 200px;
+}
+@media screen {
+  
+}
+
+.search-bar {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.user-actions {
+  margin-right: 20px;
+}
+
+.user-actions button {
+  padding: 10px 20px;
+  background-color: #ff0066;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.cart {
+  position: relative;
+  margin-right: 20px;
+}
+
+#cart-items {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ff0066;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.product {
+  margin-top: 80px;
+  display: grid;
+  
+  align-items: center;
+  justify-content: cener;
+}
+
+.product-image {
+  margin-right: 20px;
+}
+
+.product-image img {
+  max-width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.product-image img:hover {
+  transform: scale(1.05);
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-info p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.product-info button {
+  padding: 10px 20px;
+  background-color: #ff0066;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.product-info button:hover {
+  background-color: #cc0052;
+}
+    
+      </style>
+    
+
+
+<header>
+    <div class="logo">
+        <img src="/static/img/icon.png" alt="Tu Logo">
     </div>
-</nav>
+    <input type="text" class="search-bar" placeholder="Buscar...">
+    <div class="user-actions">
+        <button onclick="window.location.href='/signin';">Iniciar Sesión</button>
+        <button onclick="window.location.href='/signup';">Registrarse</button>
+    </div>
 
-<!-- Scrollspy Navbar -->
-<nav id="navbar-example2" class="navbar navbar-light bg-body-tertiary px-3 mb-3">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="/signin">Iniciar Sesión</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/signup">Regístrate</a>
-        </li>
+    <div class="cart">
+      <a id="view-cart-btn" href="cesta.html">Ver Cesta</a>
+      <span id="cart-items">0</span>
+  </div>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="#">Ofertas</a></li>
+        <li><a href="#">Categorías</a></li>
+        <li><a href="#">{{current_user.nombre}}</a></li>
     </ul>
 </nav>
 
-<!-- Carrusel -->
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="/static/img/arduinobuynow.png" class="d-block w-100" alt="Arduino">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>¡Ofertas en Arduinos!</h5>
-                <p>Explora nuestra selección de productos Arduino a precios especiales.</p>
+
+<div class="container mt-4">
+
+    <!-- Slideshow usando Carousel de Bootstrap -->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/static/img/arduinobuynow.png" class="d-block w-100" alt="Imagen 1" style="border-radius: 20px;">
             </div>
-        </div>
-        <div class="carousel-item">
-            <img src="/static/img/BoyProtoboard.png" class="d-block w-100" alt="Protoboard">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Protoboards de alta calidad</h5>
-                <p>Ideal para tus proyectos de electrónica.</p>
+            <div class="carousel-item">
+                <img src="/static/img/arduinobuynow.png" class="d-block w-100" alt="Imagen 2" style="border-radius: 20px;">
             </div>
-        </div>
-        <div class="carousel-item">
-            <img src="/static/img/mechamarketa.png" class="d-block w-100" alt="Componentes">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Componentes de primera</h5>
-                <p>Todo lo que necesitas para tus creaciones mecánicas y electrónicas.</p>
+            <div class="carousel-item">
+                <img src="/static/img/arduinobuynow.png" class="d-block w-100" alt="Imagen 3" style="border-radius: 20px;">
             </div>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-    </button>
+
 </div>
 
-<!-- Sección de Productos -->
-<div class="container my-5">
-    <h2 class="text-center mb-4">Explora nuestros productos destacados</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/1.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
+<script>
+    let slideIndex = 0;
 
-                
-            </div>
-        </div>
+    function showSlides() {
+        let slides = document.getElementsByClassName("mySlides");
+        // Ocultar todas las imágenes
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 } // Si supera el número de imágenes, vuelve a la primera
+        slides[slideIndex - 1].style.display = "block"; // Muestra la imagen correspondiente
+        setTimeout(showSlides, 3000); // Cambia la imagen cada 3 segundos
+    }
 
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/2.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
+    // Llamamos a la función al cargar la página
+    window.onload = showSlides;
+</script>
 
-                
-            </div>
-        </div>
+    <!-- Agrega más imágenes aquí -->
+</div>
+<div id="product-details" class="hidden">
+    <!-- Aquí se mostrarán los detalles del producto -->
+    <p>hola</p>
 
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/3.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/4.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
+</div>
+<script src="store.js"></script>
 
 
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/5.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
 
-                
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/6.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/7.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/8.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/9.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/10.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/1.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/1.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="card h-100">
-                <img src="/static/img/1.jpg" class="card-img-top" alt="Producto 1">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">Descripción breve del producto.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">$19.99</h6>
-                    <a href="#" class="btn btn-primary mt-2">Comprar ahora</a>
-                </div>
-
-                
-            </div>
-        </div>
-        <!-- Repite las demás tarjetas de productos aquí -->
+<center>
+<div class="products-container">
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/71TBIRmd1oL._AC_UL320_.jpg" alt="Producto 1">
+    <div class="product-details">
+      <h2 class="product-title">Producto 1</h2>
+      <p class="product-description">Descripción breve del producto 1 aquí.</p>
+      <button class="buy-button">Comprar</button>
     </div>
+  </div>
+
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/8177AdkBSNL._AC_UL320_.jpg" alt="Producto 2">
+    <div class="product-details">
+      <h2 class="product-title">Producto 2</h2>
+      <p class="product-description">Descripción breve del producto 2 aquí.</p>
+      <button class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/71bKeb7YKyL._AC_UL320_.jpg" alt="Producto 2">
+    <div class="product-details">
+      <h2 class="product-title">Producto 2</h2>
+      <p class="product-description">Descripción breve del producto 2 aquí.</p>
+      <button class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/612Ao7vsXqL._AC_UL320_.jpg" alt="Producto 2">
+    <div class="product-details">
+      <h2 class="product-title">Producto 2</h2>
+      <p class="product-description">Descripción breve del producto 2 aquí.</p>
+      <button class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/61LVSVix2oL._AC_UL320_.jpg" alt="Producto 2">
+    <div class="product-details">
+      <h2 class="product-title">Producto 2</h2>
+      <p class="product-description">Descripción breve del producto 2 aquí.</p>
+      <button class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/71zahAuaTLL._AC_UL320_.jpg" alt="Producto 2">
+    <div class="product-details">
+      <h2 class="product-title">Producto 2</h2>
+      <p class="product-description">Descripción breve del producto 2 aquí.</p>
+      <button class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/71sSBA1YLML._AC_UL320_.jpg" alt="Producto 2">
+    <div class="product-details">
+      <h2 class="product-title">Producto 2</h2>
+      <p class="product-description">Descripción breve del producto 2 aquí.</p>
+      <button class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/61vhxxMWAcL._AC_UL320_.jpg" alt="Producto 2">
+    <div class="product-details">
+      <h2 class="product-title">Producto 2</h2>
+      <p class="product-description">Descripción breve del producto 2 aquí.</p>
+      <button class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+
+  <div class="product">
+    <img class="product-image" src="https://m.media-amazon.com/images/I/61nH3IcGe4L._AC_SR500,500_QL65_.jpg" alt="Producto 2">
+    <div class="product-details">
+      <h2 class="product-title">Producto 2</h2>
+      <p class="product-description">Descripción breve del producto 2 aquí.</p>
+      <button class="buy-button">Comprar</button>
+    </div>
+  </div>
+
+  <!-- Puedes agregar más productos siguiendo la misma estructura -->
 </div>
+</center>
+
+
+
+
+  
 
 
 
