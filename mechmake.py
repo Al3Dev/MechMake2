@@ -125,6 +125,6 @@ def sElectronicos ():
     return render_template('Electronicos.html', productos = art)
 
 
-if __name__ == '__main__':
+''' if __name__ == '__main__':
     mechmake.config.from_object(config['development'])
-    mechmake.run(port=3300)
+    mechmake.run(port=3300) '''

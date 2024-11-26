@@ -12,7 +12,7 @@ class DevelopmentConfig(Config):
     MYSQL_DB = 'mechmake' 
 
     #pythonannywere
-'''class DevelopmentConfig(Config):
+''' class DevelopmentConfig(Config):
     MYSQL_HOST = 'ABroStar.mysql.pythonanywhere-services.com'
     MYSQL_USER = 'ABroStar'
     MYSQL_PASSWORD = 'Euri02513'
